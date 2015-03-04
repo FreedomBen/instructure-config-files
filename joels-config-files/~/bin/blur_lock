@@ -1,0 +1,20 @@
+#!/bin/bash
+
+maim /tmp/screen.png
+mogrify -spread 15 -scale %10 -scale %1000 /tmp/screen.png
+i3lock -n -e -i /tmp/screen.png &
+LOCK_PID=$!
+trap 'kill %%' TERM INT
+if [[ -e /dev/fd/${XSS_SLEEP_LOCK_FD:--1} ]]; then
+    exec {XSS_SLEEP_LOCK_FD}<&-
+fi
+
+while kill -0 $LOCK_PID; do
+    sleep 5
+    if [ `xssstate -i` -gt 30000 ]; then
+        xset s reset
+        systemctl suspend
+    fi
+done
+
+rm /tmp/screen.png

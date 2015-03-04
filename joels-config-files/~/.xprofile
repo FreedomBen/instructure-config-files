@@ -1,0 +1,3 @@
+nm-applet &
+xset s 60 15
+xss-lock -l -n 'sh -c "~/bin/are_you_still_there && xset s reset"' -- ~/bin/blur_lock &

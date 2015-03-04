@@ -1,0 +1,6 @@
+polkit.addRule(function(action, subject) {
+  if(action.id == "org.freedesktop.login1.suspend" && subject.user == "joel@corp.instructure.com") {
+    return polkit.Result.YES;
+  }
+});
+

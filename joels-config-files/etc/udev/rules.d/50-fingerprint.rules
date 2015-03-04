@@ -1,0 +1,1 @@
+ATTRS{idVendor}=="138a", ATTRS{idProduct}=="0017", SYMLINK+="vfs5011", GROUP="fingerprint"
